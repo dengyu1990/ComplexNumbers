@@ -17,6 +17,12 @@ namespace ComplexNumbers
             this.Imaginary = imaginary;
         }
 
+        public Complex(int real)
+        {
+            this.Real = real;
+            this.Imaginary = 0;
+        }
+
         public override string ToString() => $"({this.Real}+{this.Imaginary}i)";
         //实现加减乘除的操作符重载
         public static Complex operator +(Complex lhs, Complex rhs) => new Complex(lhs.Real + rhs.Real, lhs.Imaginary - rhs.Imaginary);
@@ -49,5 +55,8 @@ namespace ComplexNumbers
         {
             return base.GetHashCode();
         }
+        //实现转发操作符
+        public static implicit operator Complex(int from)=>new Complex(from);
+        public static explicit operator int(Complex from)=>from.Real;
     }
 }
